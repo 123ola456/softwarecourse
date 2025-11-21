@@ -2,5 +2,7 @@
     getCategory():ItemCategory;
  }
   export enum ItemCategory{
-    CAKE
+    CAKE,
+    TOY,
+    BOOK,
  }
