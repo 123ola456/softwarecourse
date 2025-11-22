@@ -21,7 +21,29 @@ function main() {
     .setPackagingType("packagingType")
     .build();
 
-
+const book= new bookBuilder()
+    .setTitle("title") 
+    .setAuthor("author")
+    .setGenre("genre")
+    .setFormat("format")
+    .setLanguage("language")
+    .setPublisher("publisher")
+    .setSpecialEdition("specialEdition")
+    .setPackaging("packaging")
+    .build();
+    
+    const toy= new toyBuilder()
+    .setType("type")
+    .setAgeGroup("ageGroup")
+    .setBrand("brand")
+    .setMaterial("material")
+    .setBatteryRequired(true)
+    .setEducational(true)
+    .build();
+    
+    console.log(toy);
+    console.log(book);
+    console.log(cake);
 }
 
 main();
