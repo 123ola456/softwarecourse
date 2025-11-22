@@ -13,8 +13,7 @@ export class Book implements Iitem {
   private publisher: string;
   private specialEdition: string;
   private packaging: string;
-  private price: number;
-  private quantity: number;
+
 
   constructor(
     title: string,
@@ -36,8 +35,7 @@ export class Book implements Iitem {
     this.publisher = publisher;
     this.specialEdition = specialEdition;
     this.packaging = packaging;
-    this.price = price;
-    this.quantity = quantity;
+   
   }
 
   getTitle(): string {
@@ -72,11 +70,4 @@ export class Book implements Iitem {
     return this.packaging;
   }
 
-  getPrice(): number {
-    return this.price;
-  }
-
-  getQuantity(): number {
-    return this.quantity;
-  }
 }
