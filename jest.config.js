@@ -2,7 +2,7 @@
   const config = {//Config is an inetrface provided by jest to tell us how we will test our ts files using jest
   preset: 'ts-jest',                    // Specifies that we are using ts-jest for TypeScript
   testEnvironment: 'node',              // Specifies the test environment (e.g., jsdom or node)
-       roots: ['<rootDir>/src/tests'], // Specifies the root directory for Jest to look for test files
+       roots: ['<rootDir>/test'], // Specifies the root directory for Jest to look for test files
   testMatch: ['**/*.test.ts'],// in the main folder, look for tests folder and any ts files inside it
   testPathIgnorePatterns: ["/node_modules/"],//ignore node modules folder when looking for tests
   verbose: true,                        // shows detauled results of tests
