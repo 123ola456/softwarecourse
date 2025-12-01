@@ -1,6 +1,6 @@
 // cakeBuilder.test.ts
-import { Cake } from "../model/cake.model";
-import { cakeBuilder } from "../model/Builder/cake.builder";
+import { Cake } from "../src/model/cake.model";
+import { cakeBuilder } from "../src/model/Builder/cake.builder";
 
 describe("cakeBuilder", () => {
 

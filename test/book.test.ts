@@ -1,5 +1,5 @@
-import { Book } from "../model/book.model";
-import { bookBuilder } from "../model/Builder/book.builder";
+import { Book } from "../src/model/book.model";
+import { bookBuilder } from "../src/model/Builder/book.builder";
 
 describe("bookBuilder", () => {
 

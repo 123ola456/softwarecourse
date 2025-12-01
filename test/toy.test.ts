@@ -1,6 +1,6 @@
 // toyBuilder.test.ts
-import { Toy } from "../model/toy.model";
-import { toyBuilder } from "../model/Builder/toy.builder";
+import { Toy } from "../src/model/toy.model";
+import { toyBuilder } from "../src/model/Builder/toy.builder";
 
 describe.only("toyBuilder", () => {
 
