@@ -1,4 +1,4 @@
-import { parseXml } from '../utils/xmlParser';
+import { parseXml } from '../src/utils/xmlParser';
 
 describe('XML Parser', () => {
   test('should parse XML into JS object', () => {

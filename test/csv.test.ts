@@ -1,4 +1,4 @@
-import { readCSVFile, writeCSVFile } from "../../src/utils/csvParser";
+import { readCSVFile, writeCSVFile } from "../src/utils/csvParser";
 import { promises as fs } from "fs";
 
 jest.mock("fs", () => ({

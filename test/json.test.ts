@@ -1,4 +1,4 @@
-import { parseJSON } from '../utils/jsonParser';
+import { parseJSON } from '../src/utils/jsonParser';
 import path from 'path';
 
 describe('JSON Parser', () => {
