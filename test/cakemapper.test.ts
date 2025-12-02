@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { csvCakeMapper } from "../model/mapper/cake.mapper";
 import { Cake } from "../model/cake.model";
+=======
+import { csvCakeMapper } from "../src/model/mapper/cake.mapper";
+import { Cake } from "../src/model/cake.model";
+>>>>>>> 85bbad9 (fixing mappers and adding their tests)
 
 describe("csvCakeMapper", () => {
   it("should correctly map CSV data to a Cake object", () => {
