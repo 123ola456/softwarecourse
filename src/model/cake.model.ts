@@ -1,4 +1,6 @@
-import { Iitem, ItemCategory } from "./Iitem";
+import { IIdentifiableItem, Iitem, ItemCategory } from "./Iitem";
+import {id} from"../repository/Irepository"
+
 
 export class Cake implements Iitem {
   getCategory(): ItemCategory {
@@ -108,4 +110,49 @@ export class Cake implements Iitem {
     return this.packagingType;
   }
 }
+//implementing IIdentifiableItem and using its getId() method and getCategory() its inherited
+//automatically from Cake 
+export class IdentifiableCake extends Cake implements IIdentifiableItem{
+// Constructor initializes both the child-specific property `id`
+//  and all parent class (`Cake`) properties
 
+  constructor(
+    private id: id,
+    type: string,
+    flavor: string,
+    filling: string,
+    size: number,
+    layers: number,
+    frostingType: string,
+    frostingFlavor: string,
+    decorationType: string,
+    decorationColor: string,
+    customMessage: string,
+    shape: string,
+    allergies: string,
+    specialIngredients: string,
+    packagingType: string
+  ){
+    // Call parent class constructor to initialize inherited Cake properties
+    super(
+      type,
+      flavor,
+      filling,
+      size,
+      layers,
+      frostingType,
+      frostingFlavor,
+      decorationType,
+      decorationColor,
+      customMessage,
+      shape,
+      allergies,
+      specialIngredients,
+      packagingType
+    );
+  }
+    getId(): id{
+      return this.id;
+   }
+  
+  }

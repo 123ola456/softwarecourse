@@ -1,4 +1,5 @@
-import {Book} from '../book.model';
+import {Book,IdentifiableBook} from '../book.model';
+import logger from '../../utils/logger';
 export class bookBuilder{
   private title!: string;
     private author!: string;
@@ -59,7 +60,7 @@ export class bookBuilder{
         for (const prop of requiredProperties) {
             if(!prop) {
             
-                throw new Error("Missing required property for Cake");
+                throw new Error("Missing required property for Book");
             }
         }
         return new Book(

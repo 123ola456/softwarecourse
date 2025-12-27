@@ -1,4 +1,5 @@
-import {Toy} from "../toy.model";
+import {Toy,IdentifiableToy} from "../toy.model";
+import logger from "../../utils/logger"
     export class toyBuilder{
     private type!: string;
     private ageGroup!: string;
@@ -58,4 +59,4 @@ import {Toy} from "../toy.model";
         this.educational
     );
     } }
-    
+   

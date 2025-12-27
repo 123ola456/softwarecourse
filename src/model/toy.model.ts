@@ -1,5 +1,5 @@
-import { Iitem, ItemCategory } from "./Iitem";
-
+import { Iitem, ItemCategory,IIdentifiableItem } from "./Iitem";
+import{id} from "../repository/Irepository"
 export class Toy implements Iitem {
   getCategory(): ItemCategory {
     return ItemCategory.TOY;
@@ -56,3 +56,34 @@ export class Toy implements Iitem {
   }
 
 }
+//implementing IIdentifiableItem and using its getId() method and getCategory() its inherited
+//automatically from Toy
+export class IdentifiableToy extends Toy implements IIdentifiableItem{
+// Constructor initializes both the child-specific property `id`
+//  and all parent class (`Cake`) properties
+
+  constructor(
+    private id: id,
+    type: string,
+    ageGroup: string,
+    brand: string,
+    material: string,
+    batteryRequired: boolean,
+    educational: boolean,
+
+  ){
+    // Call parent class constructor to initialize inherited Cake properties
+    super(
+     type,
+    ageGroup,
+    brand,
+    material,
+    batteryRequired,
+    educational,
+  
+    )}
+    getId(): id{
+      return this.id;
+   }
+  
+  }
