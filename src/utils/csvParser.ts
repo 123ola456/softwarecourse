@@ -44,9 +44,9 @@ export async function writeCSVFile( filePath: string, data: string[][]): Promise
   try {
     const csvContent = await new Promise<string>((resolve, reject) => {
       csvStringify(data, (err, output) => {
-        if (err) {
+        if (err) 
           return reject(err);
-        }
+        
         resolve(output);
       });
     });
