@@ -18,7 +18,11 @@ export const parseXml = (xmlString: string | null): Record<string, any> | null =
   const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
 
   
+<<<<<<< HEAD
   //Check for parsererror elements first (most reliable).
+=======
+  //    Check for parsererror elements first (most reliable).
+>>>>>>> 2737a86602f7464f8f8575447798e1ebed1919f5
   const parserErrors = Array.from(xmlDoc.getElementsByTagName('parsererror'));
   if (parserErrors.length > 0) {
     const text = (parserErrors[0].textContent || '').trim();
@@ -83,4 +87,8 @@ export const parseXml = (xmlString: string | null): Record<string, any> | null =
   const out: any = {};
   out[root.nodeName] = parseNode(root);
   return out;
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 2737a86602f7464f8f8575447798e1ebed1919f5

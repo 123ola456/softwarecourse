@@ -21,4 +21,8 @@ export const parseJSON = (filePath: string): Promise<any[]> => {
       }
     });
   });
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 2737a86602f7464f8f8575447798e1ebed1919f5
