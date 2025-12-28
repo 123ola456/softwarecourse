@@ -1,0 +1,157 @@
+openapi: 3.0.0
+info:
+  title: Analytics API
+  description: API for business analytics on orders
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api
+paths:
+  /analytics/total-orders:
+    get:
+      tags:
+        - analytics
+      summary: Get total number of orders
+      description: Returns total count of all orders.
+      parameters:
+        - in: query
+          name: since
+          schema:
+            type: string
+            format: date
+          description: Start date (inclusive)
+        - in: query
+          name: until
+          schema:
+            type: string
+            format: date
+          description: End date (inclusive)
+      responses:
+        '200':
+          description: Total orders retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalOrders:
+                    type: integer
+                    example: 3998449
+        '400':
+          description: Invalid query parameters
+        '500':
+          description: Internal server error
+
+  /analytics/total-revenue:
+    get:
+      tags:
+        - analytics
+      summary: Get total revenue
+      description: Returns total revenue generated from all orders.
+      parameters:
+        - in: query
+          name: since
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: until
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Total revenue retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalRevenue:
+                    type: number
+                    format: float
+                    example: 1256989.50
+        '400':
+          description: Invalid query parameters
+        '500':
+          description: Internal server error
+
+  /analytics/order-per-item:
+    get:
+      tags:
+        - analytics
+      summary: Get total number of orders per item type
+      description: Returns the number of orders for each item type (cake, toy, book).
+      parameters:
+        - in: query
+          name: since
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: until
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Orders per item retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cake:
+                    type: integer
+                    example: 1200
+                  toy:
+                    type: integer
+                    example: 800
+                  book:
+                    type: integer
+                    example: 450
+        '400':
+          description: Invalid query parameters
+        '500':
+          description: Internal server error
+
+  /analytics/revenue-per-item:
+    get:
+      tags:
+        - analytics
+      summary: Get revenue per item type
+      description: Returns total revenue generated per item type (cake, toy, book).
+      parameters:
+        - in: query
+          name: since
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: until
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Revenue per item retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cake:
+                    type: number
+                    format: float
+                    example: 78000.50
+                  toy:
+                    type: number
+                    format: float
+                    example: 45000.00
+                  book:
+                    type: number
+                    format: float
+                    example: 22000.75
+        '400':
+          description: Invalid query parameters
+        '500':
+          description: Internal server error
