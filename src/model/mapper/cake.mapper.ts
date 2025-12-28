@@ -43,6 +43,4 @@ reverseMap(data: Cake): string[] {
 }
 
 
-
 }
-
