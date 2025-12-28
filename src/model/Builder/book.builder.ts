@@ -1,4 +1,5 @@
-import {Book} from '../book.model';
+import {Book,IdentifiableBook} from '../book.model';
+import logger from '../../utils/logger';
 export class bookBuilder{
   private title!: string;
     private author!: string;
@@ -59,7 +60,7 @@ export class bookBuilder{
         for (const prop of requiredProperties) {
             if(!prop) {
             
-                throw new Error("Missing required property for Cake");
+                throw new Error("Missing required property for Book");
             }
         }
         return new Book(
@@ -74,3 +75,40 @@ export class bookBuilder{
         );
     }
 }
+export class IdentifiableBookBuilder {
+        private id!:string;
+        private book!:Book;
+
+        static newBuilder():IdentifiableBookBuilder{
+            return new IdentifiableBookBuilder
+        }
+        setId(id:string):IdentifiableBookBuilder{
+            this.id=id;
+            return this;
+        }
+
+        setCake(book:Book):IdentifiableBookBuilder{
+            this.book=book;
+            return this;
+        }
+        build():IdentifiableBook{
+            if(!this.id || !this.book){
+                logger.info("Missing required properties ,could not build IdentifiableBook");
+                throw new Error("Missing required properties");
+            }
+            return new IdentifiableBook(
+                this.id,
+                this.book.getTitle(),
+                this.book.getAuthor(),
+                this.book.getGenre(),
+                this.book.getFormat(),
+                this.book.getLanguage(),
+                this.book.getPublisher(),
+                this.book.getSpecialEdition(),
+                this.book.getPackaging(),
+                
+            )
+
+        }
+    }
+ 

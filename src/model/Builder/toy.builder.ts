@@ -1,4 +1,5 @@
-import {Toy} from "../toy.model";
+import {Toy,IdentifiableToy} from "../toy.model";
+import logger from "../../utils/logger"
     export class toyBuilder{
     private type!: string;
     private ageGroup!: string;
@@ -58,4 +59,39 @@ import {Toy} from "../toy.model";
         this.educational
     );
     } }
-    
+     export class IdentifiableToyBuilder {
+        private id!:string;
+        private toy!:Toy;
+
+        static create():IdentifiableToyBuilder{
+            return new IdentifiableToyBuilder
+        }
+        setId(id:string):IdentifiableToyBuilder{
+            this.id=id;
+            return this;
+        }
+
+        setToy(toy:Toy):IdentifiableToyBuilder{
+            this.toy= toy;
+            return this;
+        }
+        build():IdentifiableToy{
+            if(!this.id || !this.toy){
+                logger.info("Missing required properties ,could not build IdentifiableToy");
+                throw new Error("Missing required properties");
+            }
+            return new IdentifiableToy(
+                this.id,
+                this.toy.getType(),
+                this.toy.getAgeGroup(),
+                this.toy.getBrand(),
+                this.toy.getMaterial(),
+                this.toy.isBatteryRequired(),
+                this.toy.isEducational(),
+                
+               
+            )
+
+        }
+    }
+ 

@@ -1,8 +1,8 @@
 import { IMapper } from "./IMapper";
-import { Order } from "../order.model";
-import { OrderBuilder } from "../Builder/order.builder";
-import { Iitem } from "../Iitem";
-import { Iorder } from "model/Iorder";
+import { IdentifiableOrderItem, Order } from "../order.model";
+import { IdentifiableOrderItemBuilder, OrderBuilder } from "../Builder/order.builder";
+import { IIdentifiableItem, Iitem } from "../Iitem";
+import { IIdentifiableOrderItem, Iorder } from "model/Iorder";
 
 // OrderMapper maps raw data (T) into an Order containing a valid item (U).
 // U must extend Iitem to ensure all items have required methods like getCategory(),
@@ -64,4 +64,72 @@ export class OrderMapper<T, U extends Iitem> implements IMapper<T, Iorder> {
         }
     }
 }
+export interface SQLiteOrder{
+    id: string;
+    quantity: number;
+    price: number;
+    item_category: string;
+    item_id: string;
+}
 
+export class SQLiteOrderMapper implements IMapper<{data:SQLiteOrder,item:IIdentifiableItem}, IIdentifiableOrderItem> {
+      map({data,item}:{data:SQLiteOrder,item:IIdentifiableItem}):IIdentifiableOrderItem{
+    const order=OrderBuilder.create()
+    .setId(data.id)
+    .setPrice(data.price)
+    .setQuantity(data.quantity)
+    .setItem(item)
+    .build();
+    return IdentifiableOrderItemBuilder.newBuilder().setOrder(order).setItem(item).build();
+
+
+      }
+
+
+reverseMap(data:IIdentifiableOrderItem):{data:SQLiteOrder,item:IIdentifiableItem}{
+    return {
+        data:{
+id:data.getId(),
+price:data.getPrice(),
+quantity:data.getQuantity(),
+item_category:data.getItem().getCategory(),
+item_id:data.getItem().getId()
+        },
+        item:data.getItem()
+    }
+       
+}
+}
+interface JsonItem{
+    id:string;
+}
+interface JsonOrder{
+    id:string;
+    category:string;
+    item:JsonItem;
+    price:number;
+    quantity:number;
+}
+//it maps between raw json data from the request and between identifiable order item 
+//implements IMapper yaane it must have map(data) and reverseMap(data)
+export class JsonRequestOrderMapper implements IMapper<any,IIdentifiableOrderItem>{
+    constructor(private itemMapper:IMapper<any,IIdentifiableItem>){}
+    map(data:any):IIdentifiableOrderItem{
+        //extract item and build identifiable order item
+        const item=this.itemMapper.map(data.item);//map raw data item to an identifiable item 
+        //construct order and build identifiable order
+        const order=OrderBuilder.create()
+        .setId(data.id)
+        .setItem(item)
+        .setPrice(data.price)
+        .setQuantity(data.quantity)
+        .build();
+        return IdentifiableOrderItemBuilder.newBuilder().setOrder(order).setItem(item).build();
+    }
+    reverseMap(data: IIdentifiableOrderItem) {
+       return{
+        category:data.getItem().getCategory(),
+        ...data,
+       }
+    }
+}
