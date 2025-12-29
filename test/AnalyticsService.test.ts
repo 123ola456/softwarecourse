@@ -1,4 +1,4 @@
-import { AnalyticsService } from "../src/services/analaytic.services";
+import { AnalyticsService } from "../src/services/analytic.services";
 import { OrderManagmentServices } from "../src/services/orderManagment.services";
 import { ItemCategory } from "../src/model/Iitem";
 import { IIdentifiableOrderItem } from "../src/model/Iorder";
