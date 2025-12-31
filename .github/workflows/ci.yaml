@@ -1,0 +1,23 @@
+name: Dummy workflow
+
+on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Welcome message
+        run: echo "welcome to github actions"
+
+      - name: List files
+        run: ls -a
+
+  good-bye:
+    runs-on: ubuntu-latest
+    needs: welcome
+    steps:
+      - name: Goodbye message
+        run: echo "goodbye from github actions"
